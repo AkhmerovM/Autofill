@@ -1,0 +1,38 @@
+{
+  "name": "autofill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkhmerovM/Autofill.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkhmerovM/Autofill/issues"
+  },
+  "homepage": "https://github.com/AkhmerovM/Autofill#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.1.0",
+    "eslint": "^6.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  }
+}
