@@ -34,9 +34,20 @@ module.exports = {
             filename: 'build/[name].min.css',
         })
     ],
+    devServer: {
+        contentBase: paths.public,
+        // publicPath: paths.public,
+        historyApiFallback: true,
+        compress: true,
+        port: 9001,
+        hot: true
+    },
     devtool: "source-map",
     resolve: {
         extensions: ['.jsx', '.js'],
-        modules: ['node_modules']
+        modules: ['node_modules', paths.src]
+    },
+    watchOptions: {
+        aggregateTimeout: 300
     }
 };
