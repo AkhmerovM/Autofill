@@ -2,7 +2,7 @@ import React from 'react';
 
 const initialState = {};
 
-const mainReducer = (state = initialState, action) => {
+const autofillReducer = (state = initialState, action) => {
     switch (action.type) {
         case ('SET_DATA_SET') :
             return {
@@ -12,4 +12,4 @@ const mainReducer = (state = initialState, action) => {
         default: return {...state};
     }
 };
-export {mainReducer}
+export {autofillReducer}

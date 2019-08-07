@@ -1,4 +1,5 @@
 import {MainApi} from '../../../api/main-api'
+import {getNameCities} from "../normalizers";
 
 const actionSetDataSet = (data) => {
     return {
@@ -11,7 +12,7 @@ const getDataSet = () => {
     return async (dispatch) => {
         const {data, errors} = await MainApi.getDataSet();
         if (!errors.length) {
-            dispatch(actionSetDataSet(data))
+            dispatch(actionSetDataSet(getNameCities(data)))
         }
     }
 };
