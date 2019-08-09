@@ -6,6 +6,8 @@ class Autofill extends Component {
         super(props);
         this.state = {
             value: '',
+            newDataSet: [],
+            selectedId: null,
         }
     }
     handleSelectItemClick = (e) => {
@@ -14,8 +16,20 @@ class Autofill extends Component {
         })
     };
     handleOnChangeInput = (e) => {
+        const {dataSet=[]} = this.props;
+        const value = e.target.value;
+        const newDataSet = dataSet.filter((item) => {
+            if (value === item) {
+                return null;
+            }
+            const inputValue = value.toLowerCase();
+            const element = item.toLowerCase();
+            return 0 === element.indexOf(inputValue);
+        });
         this.setState({
-            value: e.target.value,
+            value,
+            newDataSet,
+            selectedId: null,
         })
     };
     handleClearClick = () => {
@@ -24,29 +38,42 @@ class Autofill extends Component {
         })
     };
     renderItem = (item, i) => {
-        const {value} = this.state;
+        const {value, selectedId} = this.state;
         return (
-            <div key={i} className="autofill__select-item" onClick={this.handleSelectItemClick}>
+            <div key={i} className={`autofill__select-item autofill__select-item_${selectedId === i ? 'active': '' }`} onClick={this.handleSelectItemClick}>
                 <strong>{item.substr(0, value.length)}</strong>{item.substr(value.length, item.length - value.length)}
             </div>
         )
     };
-    findCoincenences = (item) => {
-        const {value} = this.state;
-        if (value === item) {
-            return null;
-        }
-        const inputValue = value.toLowerCase();
-        const element = item.toLowerCase();
-        return 0 === element.indexOf(inputValue);
+    bindEvents = () => {
+        document.addEventListener('keydown',(e) => {
+            const {newDataSet} = this.state;
+            console.log(this.state);
+            switch (e.code) {
+                case('ArrowDown'):
+                    this.setState((prevState) => {
+                        if (prevState.selectedId === newDataSet.length - 1) {
+                            return {selectedId: 0}
+                        }
+                       return {selectedId: prevState.selectedId + 1}
+                    });
+                    break;
+                case('ArrowUp'):
+                    this.setState((prevState) => {
+                        if (prevState.selectedId) {
+                            return {selectedId: newDataSet.length - 1}
+                        }
+                        return {selectedId: prevState.selectedId - 1}
+                    });
+                    break;
+            }
+        });
     };
+    componentDidMount() {
+        this.bindEvents();
+    }
     render() {
-        const {value} = this.state;
-        const {dataSet=[]} = this.props;
-        let newDataSet = [];
-        if (value) {
-            newDataSet = dataSet.filter(this.findCoincenences);
-        }
+        const {value, newDataSet} = this.state;
         return (
             <div className='autofill'>
                 <div className="autofill__input-wrapper">
