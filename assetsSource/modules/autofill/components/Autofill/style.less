@@ -2,8 +2,14 @@
     display: inline-block;
     position: relative;
     &__input {
-        padding: 10px 20px 10px 10px;
+        padding: 0 20px 0 10px;
+        height: 40px;
         outline: none;
+        width: 100%;
+        border: 1px solid #aeaeae;
+        &:focus {
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
     }
     &__input-wrapper {
         display: flex;
@@ -13,20 +19,15 @@
         max-height: 200px;
         background-color: #fff;
         overflow-y: scroll;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        //&::-webkit-scrollbar {
-        //    width: 0;
-        //}
-        //-ms-overflow-style: none;
-        //overflow: -moz-scrollbars-none;
+        border-left: 1px solid #aeaeae;
+        border-right: 1px solid #aeaeae;
     }
     &__select-item {
         cursor: pointer;
-        height: 20px;
+        height: 40px;
         padding: 10px;
-        border-bottom: 1px solid #000;
         overflow: hidden;
+        text-overflow: ellipsis;
         &:hover {
             background-color: #f0efea;
         }
@@ -39,7 +40,6 @@
         width: 12px;
         height: 12px;
         opacity: 0.3;
-        padding: 5px;
         cursor: pointer;
         right: 0;
         &:hover {
