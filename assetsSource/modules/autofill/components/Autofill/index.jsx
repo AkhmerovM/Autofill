@@ -10,6 +10,7 @@ class Autofill extends Component {
             newDataSet: [],
             selectedId: -1,
         };
+        this.autofill = React.createRef();
         this.select = React.createRef();
     }
     handleSelectItemClick = (e) => {
@@ -53,6 +54,15 @@ class Autofill extends Component {
         )
     };
     bindEvents = () => {
+        document.addEventListener('click', (e) => {
+            let isClickInside = this.autofill.current.contains(e.target);
+            if (!isClickInside) {
+                this.setState({
+                    newDataSet: [],
+                    selectedId: -1,
+                });
+            }
+        });
         document.addEventListener('keydown',(e) => {
             const {newDataSet, selectedId} = this.state;
             if (!newDataSet.length) {
@@ -102,13 +112,14 @@ class Autofill extends Component {
     }
     componentWillUnmount = () => {
         document.removeEventListener('keydown');
+        document.removeEventListener('click');
     };
     render() {
         const {value, newDataSet} = this.state;
         return (
-            <div className='autofill'>
+            <div className='autofill' ref={this.autofill}>
                 <div className="autofill__input-wrapper">
-                    <input type="text" value={value} onChange={this.handleOnChangeInput} className="autofill__input" />
+                    <input type="text" value={value} onChange={this.handleOnChangeInput} onDoubleClick={this.findCoincedents} className="autofill__input" />
                     {value ? <div className="autofill__close" onClick={this.handleClearClick}>
                     </div>: null}
                 </div>

@@ -24,6 +24,8 @@ body {
 }
 .autofill__select {
   max-height: 200px;
+  position: absolute;
+  width: 100%;
   background-color: #fff;
   overflow-y: scroll;
   border-left: 1px solid #aeaeae;
