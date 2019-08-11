@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.less';
-import {App} from "./App.js";
+import {Main} from "./Main";
 
 const root = document.getElementById('root');
-ReactDOM.render(<App />, root);
+ReactDOM.render(<Main />, root);
 
 if (module.hot) {
-    module.hot.accept('App', () => {
-        ReactDOM.render(<App />, root);
+    module.hot.accept('Main', () => {
+        ReactDOM.render(<Main />, root);
     });
 }

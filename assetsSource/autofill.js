@@ -4,7 +4,8 @@ import initStore from "./store";
 import {AutofillContainer} from "./modules/autofill/containers/AutofillContainer";
 
 const store = initStore();
-class App extends Component {
+
+class Autofill extends Component {
     render () {
         return (
             <Provider store={store} >
@@ -13,5 +14,4 @@ class App extends Component {
         )
     }
 }
-
-export {App}
+export {Autofill}

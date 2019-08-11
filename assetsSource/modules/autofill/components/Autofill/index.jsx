@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './style.less';
+import {COUNT_ELEMENT_COLUMN, SELECT_ITEM_HEIGHT} from "../../constansts";
 
 class Autofill extends Component {
     constructor(props) {
@@ -93,10 +94,8 @@ class Autofill extends Component {
     }
     componentDidUpdate() {
         const {selectedId} = this.state;
-        const elementHeight = 40;
-        const countElement = 5;
-        if (selectedId >= countElement) {
-            this.select.current.scrollTop = (selectedId + 1 - countElement) * elementHeight;
+        if (selectedId >= COUNT_ELEMENT_COLUMN) {
+            this.select.current.scrollTop = (selectedId + 1 - COUNT_ELEMENT_COLUMN) * SELECT_ITEM_HEIGHT;
         } else {
             this.select.current.scrollTop = 0;
         }
