@@ -7,9 +7,9 @@
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode=development",
-    "build": "webpack --mode=production",
-    "nodemon": "NODE_PATH=./assetsSource nodemon server.js"
+    "build": "webpack --mode=production"
   },
+  "proxy": "http://localhost:3001",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AkhmerovM/Autofill.git"
