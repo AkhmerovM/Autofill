@@ -6,9 +6,9 @@ class Autofill extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            newDataSet: [],
-            selectedId: -1,
+            value: props.value,
+            options: props.options,
+            selectedId: null,
         };
         this.autofill = React.createRef();
         this.select = React.createRef();
@@ -19,16 +19,20 @@ class Autofill extends Component {
         }, this.findCoincedents)
     };
     handleOnChangeInput = (e) => {
+        const {onChange} = this.props;
         const value = e.target.value;
         this.setState({
             value,
-            selectedId: -1,
+            selectedId: null,
         }, this.findCoincedents);
+        if(onChange) {
+            onChange();
+        }
     };
     findCoincedents = () => {
-        const {dataSet=[]} = this.props;
+        const {options=[]} = this.props;
         const {value} = this.state;
-        const newDataSet = dataSet.filter((item) => {
+        const newDataSet = options.filter((item) => {
             if (value === item || !value) {
                 return null;
             }
@@ -37,7 +41,7 @@ class Autofill extends Component {
             return 0 === element.indexOf(inputValue);
         });
         this.setState({
-            newDataSet,
+            options: newDataSet,
         });
     };
     handleClearClick = () => {
@@ -58,20 +62,20 @@ class Autofill extends Component {
             let isClickInside = this.autofill.current.contains(e.target);
             if (!isClickInside) {
                 this.setState({
-                    newDataSet: [],
-                    selectedId: -1,
+                    options: [],
+                    selectedId: null,
                 });
             }
         });
         document.addEventListener('keydown',(e) => {
-            const {newDataSet, selectedId} = this.state;
-            if (!newDataSet.length) {
+            const {options, selectedId} = this.state;
+            if (!options.length) {
                 return null;
             }
             switch (e.code) {
                 case('ArrowDown'):
                     this.setState((prevState) => {
-                        if (prevState.selectedId === newDataSet.length - 1) {
+                        if (prevState.selectedId === options.length - 1 || prevState.selectedId === null) {
                             return {selectedId: 0}
                         }
                        return {selectedId: prevState.selectedId + 1}
@@ -79,8 +83,8 @@ class Autofill extends Component {
                     break;
                 case('ArrowUp'):
                     this.setState((prevState) => {
-                        if (0 >= prevState.selectedId) {
-                            return {selectedId: newDataSet.length - 1}
+                        if (0 >= prevState.selectedId && prevState.selectedId !== null) {
+                            return {selectedId: options.length - 1}
                         }
                         return {selectedId: prevState.selectedId - 1}
                     });
@@ -91,8 +95,8 @@ class Autofill extends Component {
                     }
                     this.setState((prevState) => {
                         return {
-                            value: prevState.newDataSet[prevState.selectedId],
-                            selectedId: -1,
+                            value: prevState.options[prevState.selectedId],
+                            selectedId: null,
                         }
                     }, this.findCoincedents);
                     break;
@@ -115,7 +119,7 @@ class Autofill extends Component {
         document.removeEventListener('click');
     };
     render() {
-        const {value, newDataSet} = this.state;
+        const {value, options} = this.state;
         return (
             <div className='autofill' ref={this.autofill}>
                 <div className="autofill__input-wrapper">
@@ -124,7 +128,7 @@ class Autofill extends Component {
                     </div>: null}
                 </div>
                 <div className="autofill__select" ref={this.select}>
-                    {newDataSet.map(this.renderItem)}
+                    {options.map(this.renderItem)}
                 </div>
             </div>
         )

@@ -4,8 +4,12 @@ import {Autofill} from "./autofill";
 function App () {
     return (
         <div>
-            <Autofill />
-            <Autofill />
+            {/*<div className='form-group'>*/}
+                {/*<Autofill />*/}
+            {/*</div>*/}
+            <div className='form-group'>
+                <Autofill value='' options={[]} dataSetUrl='http://localhost:3002/dataset' />
+            </div>
         </div>
     )
 }

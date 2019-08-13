@@ -17,11 +17,12 @@ function mapDipatchToProps(dispatch) {
 class AutofillContainerWrapper extends Component {
 
     componentDidMount() {
-        this.props.getDataSet();
+        const {dataSetUrl} = this.props;
+        this.props.getDataSet(dataSetUrl);
     }
     render() {
-        const {dataSet} = this.props;
-        return <Autofill dataSet={dataSet}/>
+        const {dataSet=[], options, value = null, onChange} = this.props;
+        return <Autofill value={value} onChange={onChange} options={dataSet ? dataSet : options}/>
     }
 }
 const AutofillContainer = connect(mapStateToProps, mapDipatchToProps())(AutofillContainerWrapper);

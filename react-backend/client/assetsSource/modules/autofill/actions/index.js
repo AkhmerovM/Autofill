@@ -8,9 +8,9 @@ const actionSetDataSet = (data) => {
     }
 };
 
-const getDataSet = () => {
+const getDataSet = (url) => {
     return async (dispatch) => {
-        const {data, errors} = await MainApi.getDataSet();
+        const {data, errors} = await MainApi.getDataSet(url);
         if (!errors.length) {
             dispatch(actionSetDataSet(getNameCities(data)))
         }

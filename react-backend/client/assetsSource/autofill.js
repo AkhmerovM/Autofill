@@ -7,9 +7,10 @@ const store = initStore();
 
 class Autofill extends Component {
     render () {
+        const {dataSetUrl='', value, onChange, options=[]} = this.props;
         return (
             <Provider store={store} >
-                <AutofillContainer />
+                <AutofillContainer dataSetUrl={dataSetUrl}  options={options} value={value} onChange={onChange} />
             </Provider >
         )
     }
