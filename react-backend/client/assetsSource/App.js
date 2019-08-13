@@ -1,16 +1,17 @@
-import React from 'react';
-import {Autofill} from "./autofill";
+import React, {Component} from 'react';
+import {Provider} from "react-redux";
+import initStore from "./store";
+import {AutofillContainer} from "./modules/autofill/containers/AutofillContainer";
 
-function App () {
-    return (
-        <div>
-            {/*<div className='form-group'>*/}
-                {/*<Autofill />*/}
-            {/*</div>*/}
-            <div className='form-group'>
-                <Autofill value='' options={[]} dataSetUrl='http://localhost:3002/dataset' />
-            </div>
-        </div>
-    )
+const store = initStore();
+
+class App extends Component {
+    render () {
+        return (
+            <Provider store={store} >
+                <AutofillContainer />
+            </Provider >
+        )
+    }
 }
 export {App}

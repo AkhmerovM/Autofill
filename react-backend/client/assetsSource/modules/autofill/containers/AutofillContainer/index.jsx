@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getDataSet} from "../../actions";
-import {Autofill} from "../../components/Autofill";
+import {Autofill} from "autofill";
 import {selectAutoFillModuleData} from "../../selectors";
 
 function mapStateToProps(state) {
     return {
-        dataSet: selectAutoFillModuleData(state),
+        options: selectAutoFillModuleData(state),
     }
 }
 function mapDipatchToProps(dispatch) {
@@ -17,12 +17,13 @@ function mapDipatchToProps(dispatch) {
 class AutofillContainerWrapper extends Component {
 
     componentDidMount() {
-        const {dataSetUrl} = this.props;
-        this.props.getDataSet(dataSetUrl);
+        const {getDataSet} = this.props;
+        getDataSet();
     }
     render() {
-        const {dataSet=[], options, value = null, onChange} = this.props;
-        return <Autofill value={value} onChange={onChange} options={dataSet ? dataSet : options}/>
+        const {options=[]} = this.props;
+        let value ='';
+        return <Autofill value={value} options={options}/>
     }
 }
 const AutofillContainer = connect(mapStateToProps, mapDipatchToProps())(AutofillContainerWrapper);
