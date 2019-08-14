@@ -1,16 +1,16 @@
-Work enviroment for autofill
+# Work enviroment for autofill
 
 stack - react/redux/less/webpack
 redux store is used for save response from nodejs
 
-AutofillComponent https://github.com/AkhmerovM/AutofillComponent
+[AutofillComponent](https://github.com/AkhmerovM/AutofillComponent)
 
-Installation and usage
+## Installation and usage
 
-
+```bash
 npm i -D git+https://github.com/AkhmerovM/AutofillComponent
-
-
+```
+```javascript
 import React from 'react';
 import {Autofill} from 'autofill';
 
@@ -26,15 +26,15 @@ class App extends React.Component {
     );
   }
 }
+```
 
-
-Props
+## Props
 
 Common props you may want to specify include:
-className - apply a className to the control
-classNameItem - apply classNames to inner elements
-isDisabled - disable the control
-name - generate an HTML input with this name, containing the current value
-options - specify the options the user can select from
-placeholder - change the text displayed when no option is selected
-value - control the current value
+- ***className*** - apply a className to the control
+- ***classNameItem*** - apply classNames to inner elements
+- ***isDisabled*** - disable the control
+- ***name*** - generate an HTML input with this name, containing the current value
+- ***options*** - specify the options the user can select from
+- ***placeholder*** - change the text displayed when no option is selected
+- ***value*** - control the current value
