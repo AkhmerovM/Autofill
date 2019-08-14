@@ -11,7 +11,6 @@ const actionSetDataSet = (data) => {
 const getDataSet = (url) => {
     return async (dispatch) => {
         const {data, errors} = await MainApi.getDataSet(url);
-        console.log(data);
         if (!errors.length) {
             dispatch(actionSetDataSet(getNameCities(data)))
         }

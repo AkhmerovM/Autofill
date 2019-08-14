@@ -1,5 +1,5 @@
 {
-  "name": "autofill",
+  "name": "autofillContainer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -26,6 +26,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "autofill": "git+https://github.com/AkhmerovM/AutofillComponent.git",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
     "babel-preset-react": "^6.24.1",
