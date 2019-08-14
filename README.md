@@ -7,6 +7,11 @@ stack - react/redux/less/webpack
 
 ## Installation and usage
 
+###### For run this environment
+
+- npm run start in */react-backend* to run nodejs server
+- npm run start in */react-backend/client* to run webpack-dev-server
+
 ```bash
 npm i -D git+https://github.com/AkhmerovM/AutofillComponent
 ```
