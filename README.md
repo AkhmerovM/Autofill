@@ -1,7 +1,7 @@
 # Work enviroment for autofill
 
 stack - react/redux/less/webpack
-redux store is used for save response from nodejs
+> redux store is used for save response from nodejs
 
 [AutofillComponent](https://github.com/AkhmerovM/AutofillComponent)
 
