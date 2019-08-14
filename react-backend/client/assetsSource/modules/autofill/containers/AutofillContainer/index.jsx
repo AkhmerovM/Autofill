@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getDataSet} from "../../actions";
 import {Autofill} from "autofill";
-import {selectAutoFillModuleData} from "../../selectors";
+import {selectAutoFillModuleData} from "modules/autofill/selectors";
+import {getDataSet} from "modules/autofill/actions";
 
 function mapStateToProps(state) {
     return {
@@ -22,8 +22,14 @@ class AutofillContainerWrapper extends Component {
     }
     render() {
         const {options=[]} = this.props;
-        let value ='';
-        return <Autofill value={value} options={options}/>
+        const value ='';
+        const className ='some-class1';
+        const classNameItem ='some-class2';
+        const isDisabled = false;
+        const name = '';
+        const placeholder = 'Enter something';
+        return <Autofill name={name} classNameItem={classNameItem} isDisabled={isDisabled}
+        className={className} placeholder={placeholder}  value={value} options={options}/>
     }
 }
 const AutofillContainer = connect(mapStateToProps, mapDipatchToProps())(AutofillContainerWrapper);

@@ -1,5 +1,5 @@
-import {MainApi} from '../../../api/main-api'
-import {getNameCities} from "../normalizers";
+import {MainApi} from 'api/main-api'
+import {getNameCities} from "modules/autofill/normalizers";
 
 const actionSetDataSet = (data) => {
     return {

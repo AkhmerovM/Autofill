@@ -1,9 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const paths = {
-    src: path.resolve('assetsSource'),
-    public: path.resolve('www'),
+    src: path.resolve(__dirname, 'assetsSource'),
+    public: path.resolve(__dirname, 'www'),
 };
+console.log(paths.src);
 module.exports = {
     context: paths.src,
     entry: {
@@ -46,7 +47,7 @@ module.exports = {
     resolve: {
         symlinks: false,
         extensions: ['.jsx', '.js'],
-        modules: ['node_modules', paths.src]
+        modules: [paths.src, 'node_modules']
     },
     watchOptions: {
         aggregateTimeout: 300
