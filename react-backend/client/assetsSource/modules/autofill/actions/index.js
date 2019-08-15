@@ -1,19 +1,30 @@
 import {MainApi} from 'api/main-api'
-import {getNameCities} from "modules/autofill/normalizers";
 
-const actionSetDataSet = (data) => {
+const actionSetCityList = (data) => {
     return {
         payload: data,
-        type: "SET_DATA_SET"
+        type: "SET_CITY_LIST"
     }
 };
-
-const getDataSet = (url) => {
+const actionSetCountyList = (data) => {
+    return {
+        payload: data,
+        type: "SET_COUNTRY_LIST"
+    }
+};
+const getCityList = (url) => {
     return async (dispatch) => {
-        const {data, errors} = await MainApi.getDataSet(url);
+        const {data, errors} = await MainApi.getCityList(url);
         if (!errors.length) {
-            dispatch(actionSetDataSet(getNameCities(data)))
+            dispatch(actionSetCityList(data));
         }
     }
 };
-export {getDataSet}
+const getCountryList = (url) => {
+    return async (dispatch) => {
+        const {data, errors} = await MainApi.getCountryList(url);
+        if (!errors.length) {
+            dispatch(actionSetCountyList(data));
+        }
+    }
+};export {getCityList, getCountryList}

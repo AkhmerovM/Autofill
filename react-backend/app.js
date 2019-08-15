@@ -6,7 +6,8 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var dataSetRouter = require('./routes/dataset');
+var CitiesRouter = require('./routes/cities');
+var CountriesRouter = require('./routes/countries');
 
 var app = express();
 app.use(cors(({origin:true,credentials: true})));
@@ -22,7 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/dataset', dataSetRouter);
+app.use('/cities', CitiesRouter);
+app.use('/countries', CountriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

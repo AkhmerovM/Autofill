@@ -1,35 +1,60 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Autofill} from "autofill";
-import {selectAutoFillModuleData} from "modules/autofill/selectors";
-import {getDataSet} from "modules/autofill/actions";
+import {selectCityList, selectCountryList} from "modules/autofill/selectors";
+import {getCityList, getCountryList} from "modules/autofill/actions";
 
 function mapStateToProps(state) {
     return {
-        options: selectAutoFillModuleData(state),
+        cities: selectCityList(state),
+        countries: selectCountryList(state),
     }
 }
 function mapDipatchToProps(dispatch) {
     return {
-        getDataSet,
+        getCityList,
+        getCountryList,
     }
 }
 class AutofillContainerWrapper extends Component {
 
     componentDidMount() {
-        const {getDataSet} = this.props;
-        getDataSet();
+        const {getCityList, getCountryList} = this.props;
+        getCityList();
+        getCountryList();
     }
-    render() {
-        const {options=[]} = this.props;
+    renderCityList() {
+        const {cities=[]} = this.props;
         const value ='';
         const className ='some-class1';
         const classNameItem ='some-class2';
         const isDisabled = false;
         const name = '';
         const placeholder = 'Enter city';
-        return <Autofill name={name} classNameItem={classNameItem} isDisabled={isDisabled}
-        className={className} placeholder={placeholder}  value={value} options={options}/>
+        return (
+            <div className='form-group'>
+                <Autofill name={name} classNameItem={classNameItem} isDisabled={isDisabled}
+                    className={className} placeholder={placeholder}  value={value} options={cities}/>
+            </div>
+        )
+
+    }
+    renderCountryList() {
+        const {countries=[]} = this.props;
+        const placeholder = 'Enter Country';
+        return (
+            <div className='form-group'>
+                <Autofill  placeholder={placeholder}  options={countries}/>
+            </div>
+        )
+    }
+    render() {
+        return (
+            <div className='main'>
+                {this.renderCityList()}
+                {this.renderCountryList()}
+            </div>
+        )
     }
 }
 const AutofillContainer = connect(mapStateToProps, mapDipatchToProps())(AutofillContainerWrapper);

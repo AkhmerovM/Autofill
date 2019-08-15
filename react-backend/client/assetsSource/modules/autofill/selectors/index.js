@@ -6,4 +6,9 @@ function selectAutoFillModuleName (state) {
 function selectAutoFillModuleData (state) {
     return selectAutoFillModuleName(state).data;
 }
-export {selectAutoFillModuleData}
+function selectCountryList (state) {
+    return selectAutoFillModuleData(state).country;
+}
+function selectCityList (state) {
+    return selectAutoFillModuleData(state).city;
+}export {selectCityList, selectCountryList}
