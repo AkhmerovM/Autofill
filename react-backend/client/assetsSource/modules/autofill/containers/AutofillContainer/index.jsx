@@ -27,7 +27,7 @@ class AutofillContainerWrapper extends Component {
         const classNameItem ='some-class2';
         const isDisabled = false;
         const name = '';
-        const placeholder = 'Enter something';
+        const placeholder = 'Enter city';
         return <Autofill name={name} classNameItem={classNameItem} isDisabled={isDisabled}
         className={className} placeholder={placeholder}  value={value} options={options}/>
     }
